@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import ApiService from '../../services/api';
-import styles from '../../styles/Responses.module.css';
+import styles from './Responses.module.css';
 
 interface ResponseListProps {
   requestId: number;
