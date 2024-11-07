@@ -11,6 +11,8 @@ const LoginForm: React.FC = () => {
         try {
             const response = await ApiService.loginUser({ email, password });
             localStorage.setItem('token', response.data.token);
+            localStorage.setItem('role', response.data.role);
+
             alert('Login successful');
         } catch (error) {
             alert('Login failed');

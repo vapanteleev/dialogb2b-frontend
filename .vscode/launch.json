@@ -1,0 +1,17 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "chrome", // Используйте "edge" для браузера Edge
+            "request": "launch",
+            "name": "Launch Chrome against localhost",
+            "url": "http://localhost:3001", // Адрес вашего фронтенд-сервера
+            "webRoot": "${workspaceFolder}/src",
+            "sourceMaps": true,
+            "trace": true, // Включает более детальную отладку, если нужно
+            "skipFiles": [
+                "node_modules/**"
+            ]
+        }
+    ]
+}

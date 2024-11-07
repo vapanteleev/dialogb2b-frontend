@@ -17,6 +17,7 @@ const BuyerDashboard: React.FC = () => {
 
     // Хук useEffect выполняется после монтирования компонента и загружает данные откликов
     useEffect(() => {
+        console.log("BuyerDashboard")
         const fetchResponses = async () => {
             const token = localStorage.getItem('token'); // Получение токена из localStorage
             if (token) {

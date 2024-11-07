@@ -16,6 +16,8 @@ const SupplierDashboard: React.FC = () => {
 
     // Хук useEffect выполняется после монтирования компонента и загружает данные заявок
     useEffect(() => {
+        console.log("SupplierDashboard")
+
         const fetchRequests = async () => {
             const token = localStorage.getItem('token'); // Получение токена из localStorage
             if (token) {

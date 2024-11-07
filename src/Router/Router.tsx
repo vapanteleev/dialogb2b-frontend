@@ -17,16 +17,24 @@ const PrivateRoute: React.FC<{ children: React.ReactNode; requiredRole: string }
 
     // Если токен отсутствует, перенаправляем пользователя на страницу входа
     if (!token) {
+        console.log("login")
         return <Navigate to="/login" />;
     }
 
     // Проверка роли пользователя: если роль не совпадает с требуемой, перенаправляем на соответствующую панель
     if (role !== requiredRole) {
+        console.log("buyer supplier")
+
         return <Navigate to={role === 'buyer' ? '/buyer-dashboard' : '/supplier-dashboard'} />;
     }
 
     // Если все проверки пройдены, рендерим дочерние элементы (переданный компонент)
-    return <>{children}</>;
+    else {
+        console.log("children children")
+
+        return <>{children}</>;
+
+    }
 };
 
 // Основной компонент маршрутизации приложения
