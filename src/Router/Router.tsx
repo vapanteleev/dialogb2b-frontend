@@ -15,33 +15,52 @@ const PrivateRoute: React.FC<{ children: React.ReactNode; requiredRole: string }
     const token = localStorage.getItem('token');
     const role = localStorage.getItem('role');
 
+    console.log('Token:', token);
+    console.log('Role:', role);
+
     // Если токен отсутствует, перенаправляем пользователя на страницу входа
     if (!token) {
-        console.log("login")
-        return <Navigate to="/login" />;
+        console.log('Пользователь не авторизован, перенаправление на /login');
+        return <Navigate to="/login" replace />;
     }
 
-    // Проверка роли пользователя: если роль не совпадает с требуемой, перенаправляем на соответствующую панель
+    // Проверка роли пользователя и перенаправление при несоответствии
     if (role !== requiredRole) {
-        console.log("buyer supplier")
-
-        return <Navigate to={role === 'buyer' ? '/buyer-dashboard' : '/supplier-dashboard'} />;
+        console.log('Роль пользователя не соответствует, перенаправление...');
+        return <Navigate to={role === 'buyer' ? '/buyer-dashboard' : '/supplier-dashboard'} replace />;
     }
 
     // Если все проверки пройдены, рендерим дочерние элементы (переданный компонент)
-    else {
-        console.log("children children")
-
-        return <>{children}</>;
-
-    }
+    console.log('Все проверки пройдены, рендеринг дочерних элементов');
+    return <>{children}</>;
 };
+const DefaultRoute = () => {
+    // Получение токена и роли из localStorage
+    const token = localStorage.getItem('token');
+    const role = localStorage.getItem('role');
+
+    console.log('Token:', token);
+    console.log('Role:', role);
+
+    // Если токен отсутствует, перенаправляем пользователя на страницу входа
+    if (!token) {
+        console.log('Пользователь не авторизован, перенаправление на /login');
+        return <Navigate to="/login" replace />;
+    }
+    else {
+        return <Navigate to={role === 'buyer' ? '/buyer-dashboard' : '/supplier-dashboard'} replace />;
+    }
+
+
+}
 
 // Основной компонент маршрутизации приложения
 const AppRoutes: React.FC = () => {
     return (
         <Router>
             <Routes>
+                <Route path="/" element={<DefaultRoute />} />
+
                 {/* Маршрут для страницы входа */}
                 <Route path="/login" element={<LoginForm />} />
 
