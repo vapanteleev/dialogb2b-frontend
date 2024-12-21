@@ -25,7 +25,7 @@ const ResponseList: React.FC<ResponseListProps> = ({ requestId }) => {
       <h2>Responses for Request ID {requestId}</h2>
       {responses.map(response => (
         <div key={response.id} className={styles.responseItem}>
-          <p>Supplier ID: {response.supplier_id}</p>
+          <p>Поставщик ID: {response.supplier_id}</p>
           <p>Offer Price: {response.offer_price}</p>
           <p>Characteristics: {JSON.stringify(response.offered_characteristics)}</p>
         </div>

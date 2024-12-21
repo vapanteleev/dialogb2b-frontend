@@ -1,0 +1,15 @@
+.LogOut_Container {
+    position: absolute;
+    top:20px;
+    right: 100px;
+}
+
+.LogOut_Button {
+    /* height: 100px; */
+    background-color: rgba(199, 56, 56, 0.541);
+}
+
+.LogOut_Button:hover {
+    /* height: 110px; */
+    background-color: rgba(199, 96, 56, 0.863);
+}

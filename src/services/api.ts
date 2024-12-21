@@ -2,7 +2,7 @@ import axios, { AxiosInstance } from 'axios';
 
 class ApiService {
     private api: AxiosInstance;
-
+    private token = localStorage.getItem("token");
     constructor() {
         this.api = axios.create({
             baseURL: 'http://localhost:4000/api',
@@ -59,6 +59,12 @@ class ApiService {
         });
     }
 
+    public async CreateRequest(Request: any) {
+        return this.api.post('/requests', Request, {
+            headers: { Authorization: `Bearer ${this.token}` },
+        });
+    }
+
     /**
      * Description
      * 
@@ -91,9 +97,9 @@ class ApiService {
      * @param {string} token
      * @returns {Promise<AxiosResponse<any, any>>}
      */
-    public async createResponse(response: any, token: string) {
+    public async createResponse(response: any,) {
         return this.api.post('/responses', response, {
-            headers: { Authorization: `Bearer ${token}` },
+            headers: { Authorization: `Bearer ${this.token}` },
         });
     }
 }

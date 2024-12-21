@@ -1,17 +1,24 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import ApiService from '../../services/api';
 import styles from '../../styles/Auth.module.css';
+import { useNavigate } from 'react-router-dom';
 
 const LoginForm: React.FC = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-
+    const navigate = useNavigate();
+    useEffect(() => {
+        if (localStorage.getItem("token")) {
+            navigate('/')
+        }
+    }, [])
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         try {
             const response = await ApiService.loginUser({ email, password });
             localStorage.setItem('token', response.data.token);
             localStorage.setItem('role', response.data.role);
+            window.location.reload();
 
             alert('Login successful');
         } catch (error) {

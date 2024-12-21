@@ -40,7 +40,7 @@ const BuyerDashboard: React.FC = () => {
             <div className={styles.responseList}>
                 {responses.map((response) => (
                     <div key={response.id} className={styles.responseItem}>
-                        <p><strong>Supplier ID:</strong> {response.supplier_id}</p>
+                        <p><strong>Поставщик ID:</strong> {response.supplier_id}</p>
                         <p><strong>Offer Price:</strong> ${response.offer_price}</p>
                         <p><strong>Characteristics:</strong> {JSON.stringify(response.offered_characteristics)}</p>
                     </div>

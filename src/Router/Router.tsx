@@ -1,5 +1,5 @@
 // src/routes.tsx
-import React from 'react';
+import React, { useEffect } from 'react';
 import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import BuyerDashboard from '../components/BuyerDashboard/BuyerDashboard';
 import SupplierDashboard from '../components/SupplierDashboard/SupplierDashboard';
@@ -8,6 +8,9 @@ import LoginForm from "../components/LoginForm/LoginForm";
 import RegisterForm from "../components/RegisterForm/RegisterForm";
 import RequestList from "../components/RequestList/RequestList";
 import ResponseList from "../components/ResponseList/ResponseList";
+import NavMenu from '../components/NavMenu/NavMenu';
+import LogOut from '../components/LogOut/LogOut';
+import RequestForm from '../components/RequestForm/RequestForm';
 
 // Компонент PrivateRoute защищает маршруты, проверяя наличие токена и роли пользователя
 const PrivateRoute: React.FC<{ children: React.ReactNode; requiredRole: string }> = ({ children, requiredRole }) => {
@@ -45,7 +48,7 @@ const DefaultRoute = () => {
     // Если токен отсутствует, перенаправляем пользователя на страницу входа
     if (!token) {
         console.log('Пользователь не авторизован, перенаправление на /login');
-        return <Navigate to="/login" replace />;
+        return <Navigate to="/startNav" replace />;
     }
     else {
         return <Navigate to={role === 'buyer' ? '/buyer-dashboard' : '/supplier-dashboard'} replace />;
@@ -60,6 +63,8 @@ const AppRoutes: React.FC = () => {
         <Router>
             <Routes>
                 <Route path="/" element={<DefaultRoute />} />
+                <Route path="/startNav" element={<NavMenu />} />
+                <Route path="/requestForm" element={<RequestForm />} />
 
                 {/* Маршрут для страницы входа */}
                 <Route path="/login" element={<LoginForm />} />
@@ -94,6 +99,9 @@ const AppRoutes: React.FC = () => {
                 {/* requestId передается в компонент в качестве примера */}
                 <Route path="/responses/:requestId" element={<ResponseList requestId={1} />} />
             </Routes>
+
+
+            <LogOut />
         </Router>
     );
 };

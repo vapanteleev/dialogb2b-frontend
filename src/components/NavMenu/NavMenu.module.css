@@ -1,0 +1,19 @@
+.NavMenu_Elem {
+    background-color: antiquewhite;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
+    border-width: 1px;
+    border-color: black;
+    padding: 2px;
+    width: 300px;
+    border-radius: 4px;
+    border-style: groove;
+
+}
+
+.NavMenu_Elem:hover {
+    background-color: rgb(221, 177, 120);
+
+    cursor: pointer;
+}

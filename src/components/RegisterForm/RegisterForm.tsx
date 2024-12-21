@@ -1,17 +1,22 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import ApiService from '../../services/api';
 import styles from '../../styles/Auth.module.css';
+import { useNavigate } from 'react-router-dom';
 
 const RegisterForm: React.FC = () => {
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [role, setRole] = useState('buyer');
+    const navigate = useNavigate();
+
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         try {
-            await ApiService.registerUser({ name, email, password, role });
+            await ApiService.registerUser({ name, email, password, role }).then(() => {
+                navigate('/')
+            });
             alert('User registered successfully');
         } catch (error) {
             alert('Registration failed');
